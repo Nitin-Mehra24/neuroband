@@ -101,7 +101,7 @@
       --gutter: var(--spacing-40);
 
       /* Display heading (WHOOP impact style) */
-      --heading-display-size: 100px;
+      --heading-display-size: clamp(56px, 7.8vw, 100px);
       --heading-display-weight: 400;
       --heading-display-tracking: -0.04em;
       --heading-display-leading: 1;
@@ -128,7 +128,7 @@
       line-height: var(--leading-body);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      overflow-x: hidden;
+      overflow-x: clip;
     }
 
     h1, h2, h3, h4, h5, h6, .display-title {
@@ -140,7 +140,8 @@
 
     .display-heading-line {
       display: block;
-      white-space: nowrap;
+      white-space: normal;
+      overflow-wrap: anywhere;
     }
 
     .hero h1,
@@ -157,6 +158,11 @@
       text-align: left;
       max-width: none;
       margin: 0 0 var(--heading-to-body-gap);
+      text-wrap: balance;
+    }
+
+    @media (min-width: 1281px) {
+      .display-heading-line { white-space: nowrap; }
     }
 
     .section-head {
@@ -1476,10 +1482,20 @@
     @media (max-width: 1024px) {
       :root { --gutter: var(--spacing-24); }
       .hero { min-height: auto; padding: 124px 0 64px; }
+      .hero h1,
+      .impact h2,
+      .section-head h2,
+      .choose-device > .container > h2,
+      .built-section h2,
+      .ways-to-wear > .container > h2,
+      .cta-section h2 {
+        font-size: clamp(42px, 8vw, 72px);
+        line-height: 1.02;
+        margin-bottom: 32px;
+      }
       .product-showcase-layout { grid-template-columns: 1fr; max-width: 480px; }
       .product-gallery { height: auto; min-height: 0; }
       .product-gallery-main { min-height: 260px; flex: none; }
-      .choose-device > .container > h2 { font-size: 48px; }
       .product-gallery-thumbs { grid-template-columns: repeat(2, 1fr); }
       .built-interactive { grid-template-columns: 1fr; gap: var(--spacing-30); }
       .built-media { order: -1; margin: 0 auto; }
@@ -1487,13 +1503,21 @@
       .wear-showcase-media { order: -1; margin: 0 auto; max-width: 420px; }
       .feature-tab-panel.active { grid-template-columns: 1fr; }
       .feature-tab-visual { max-width: 290px; order: -1; }
+      .footer-bottom .footer-legal { position: static; }
       .footer-links { gap: 40px; }
       .footer-col { min-width: 140px; }
       .stats-row { grid-template-columns: 1fr; max-width: 360px; margin: 24px auto 0; }
       .experts-track { animation-duration: 22s; }
     }
-    @media (max-width: 640px) {
+    @media (max-width: 900px) {
       .nav-links { display: none; }
+    }
+    @media (max-width: 768px) {
+      .cta-trust {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    @media (max-width: 640px) {
       .wear-showcase-media { max-width: 100%; }
       .hero { padding-top: 112px; }
       .hero h1,
@@ -1503,13 +1527,13 @@
       .built-section h2,
       .ways-to-wear > .container > h2,
       .cta-section h2 {
-        font-size: 48px;
+        font-size: clamp(34px, 11.5vw, 48px);
         line-height: 1;
         margin-bottom: 32px;
         font-weight: 400;
         letter-spacing: -0.03em;
       }
-      .display-heading-line { white-space: normal; }
+      .cta-trust { grid-template-columns: 1fr; }
       .feature-tab-text h3,
       .wear-text h3 { font-size: 32px; margin-bottom: 18px; }
       .wear-text p { font-size: 17px; }
