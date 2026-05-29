@@ -1,0 +1,2475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="NeuroBand — the AI-powered cognitive wellness wearable. Track your mind like you track your body." />
+  <title>NeuroBand — Track your mind like you track your body.</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    @font-face {
+      font-family: 'Korbin Medium';
+      src: local('Korbin Medium'), local('Korbin-Medium');
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+    }
+
+    /* ============================================================
+       WHOOP-inspired Color Tokens & Design System
+       ============================================================ */
+    :root {
+      /* Colors */
+      --color-midnight-base: #000000;
+      --color-daylight-canvas: #ffffff;
+      --color-ghost-gray: #e5e7eb;
+      --color-arctic-mist: #f3f5f9;
+      --color-stone-accent: #808080;
+      --color-gravel-scale: #999999;
+      --color-deep-indigo: #4a53ff;
+      --color-deep-indigo-hover: #3b46eb;
+      --color-warning-red: #d03433;
+      --color-glow-yellow: #fbca46;
+      --color-ruby-streak: #a41517;
+      --color-success-green: #00d26a;
+      --color-text-secondary: rgba(255, 255, 255, 0.74);
+      --color-text-muted: rgba(255, 255, 255, 0.5);
+
+      /* Typography Families */
+      --font-proxima-nova: 'Manrope', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-display: 'Korbin Medium', 'Korbin', 'Montserrat', 'Manrope', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+      /* Typography Scale */
+      --text-caption: 14px;
+      --leading-caption: 1.49;
+      --text-body: 16px;
+      --leading-body: 1.5;
+      --text-subheading: 19px;
+      --leading-subheading: 1.29;
+      --text-heading: 24px;
+      --leading-heading: 1.13;
+      --tracking-heading: -0.48px;
+      --text-heading-lg: 36px;
+      --leading-heading-lg: 1.1;
+      --tracking-heading-lg: -1.2px;
+      --text-display-sm: 44px;
+      --leading-display-sm: 1.09;
+      --tracking-display-sm: -1.3px;
+      --text-display-md: 86px;
+      --leading-display-md: 1;
+      --tracking-display-md: -1.2px;
+      --text-display: 120px;
+      --leading-display: 0.8;
+      --tracking-display: -4.8px;
+
+      /* Spacing Scale */
+      --spacing-5: 5px;
+      --spacing-8: 8px;
+      --spacing-10: 10px;
+      --spacing-12: 12px;
+      --spacing-15: 15px;
+      --spacing-16: 16px;
+      --spacing-20: 20px;
+      --spacing-24: 24px;
+      --spacing-25: 25px;
+      --spacing-30: 30px;
+      --spacing-33: 33px;
+      --spacing-36: 36px;
+      --spacing-38: 38px;
+      --spacing-40: 40px;
+      --spacing-50: 50px;
+      --spacing-92: 92px;
+
+      /* Border Radii */
+      --radius-pill: 300px;
+      --radius-media: 24px;
+      --radius-button: 60px;
+      --radius-default: 24px;
+      --radius-smallcard: 8px;
+      --radius-actionable: 16px;
+
+      /* Shadows */
+      --shadow-md: rgba(199, 199, 199, 0.25) 0px 4px 15px 0px;
+      --shadow-dark: 0 4px 30px rgba(0, 0, 0, 0.5);
+
+      /* Layout */
+      --max-width: 1320px;
+      --gutter: var(--spacing-40);
+
+      /* Display heading (WHOOP impact style) */
+      --heading-display-size: 100px;
+      --heading-display-weight: 400;
+      --heading-display-tracking: -0.04em;
+      --heading-display-leading: 1;
+      --heading-to-body-gap: 48px;
+      --body-to-content-gap: 64px;
+
+      /* Transitions */
+      --transition-fast: 0.2s ease;
+      --transition-smooth: 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-proxima-nova);
+      background: var(--color-daylight-canvas);
+      color: var(--color-midnight-base);
+      line-height: var(--leading-body);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5, h6, .display-title {
+      font-family: var(--font-proxima-nova);
+      font-weight: 400;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .display-heading-line {
+      display: block;
+      white-space: nowrap;
+    }
+
+    .hero h1,
+    .impact h2,
+    .section-head h2,
+    .choose-device > .container > h2,
+    .built-section h2,
+    .ways-to-wear > .container > h2,
+    .cta-section h2 {
+      font-size: var(--heading-display-size);
+      font-weight: var(--heading-display-weight);
+      letter-spacing: var(--heading-display-tracking);
+      line-height: var(--heading-display-leading);
+      text-align: left;
+      max-width: none;
+      margin: 0 0 var(--heading-to-body-gap);
+    }
+
+    .section-head {
+      text-align: left;
+      margin-bottom: 0;
+    }
+    .section-head p,
+    .hero .lede,
+    .ways-to-wear .sub,
+    .cta-section p.cta-lede {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.5;
+      max-width: 640px;
+      margin: 0 0 var(--body-to-content-gap);
+      text-align: left;
+    }
+
+    img, svg, video { max-width: 100%; display: block; }
+    button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+    a { color: inherit; text-decoration: none; }
+    ::selection { background: var(--color-deep-indigo); color: var(--color-daylight-canvas); }
+
+    .container {
+      max-width: var(--max-width);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+    }
+
+    /* ============================================================
+       STYLES FOR ALTERNATING SECTIONS
+       ============================================================ */
+    .section-dark {
+      background: var(--color-midnight-base);
+      color: var(--color-daylight-canvas);
+    }
+    .section-light-mist {
+      background: var(--color-arctic-mist);
+      color: var(--color-midnight-base);
+    }
+    .section-light-canvas {
+      background: var(--color-daylight-canvas);
+      color: var(--color-midnight-base);
+    }
+    .impact.section-light-canvas {
+      border-top-left-radius: 26px;
+      border-top-right-radius: 26px;
+      margin-top: 0;
+    }
+
+    /* ============================================================
+       COMPONENTS: BUTTONS
+       ============================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacing-8);
+      font-family: var(--font-proxima-nova);
+      font-weight: 600;
+      transition: transform var(--transition-fast), background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+
+    /* Standard Button Bold - White background, black text (on dark sections) */
+    .btn-bold-white {
+      background: var(--color-daylight-canvas);
+      color: var(--color-midnight-base);
+      border-radius: var(--radius-button);
+      padding: var(--spacing-15) var(--spacing-25);
+      font-size: var(--text-body);
+    }
+    .btn-bold-white:hover {
+      background: var(--color-ghost-gray);
+    }
+
+    /* Standard Button Bold - Black background, white text (on light sections) */
+    .btn-bold-black {
+      background: var(--color-midnight-base);
+      color: var(--color-daylight-canvas);
+      border-radius: var(--radius-button);
+      padding: var(--spacing-15) var(--spacing-25);
+      font-size: var(--text-body);
+    }
+    .btn-bold-black:hover {
+      background: #222222;
+    }
+
+    /* Standard Button Bold - Deep Indigo background (for accents) */
+    .btn-bold-accent {
+      background: var(--color-deep-indigo);
+      color: var(--color-daylight-canvas);
+      border-radius: var(--radius-button);
+      padding: var(--spacing-15) var(--spacing-25);
+      font-size: var(--text-body);
+    }
+    .btn-bold-accent:hover {
+      background: var(--color-deep-indigo-hover);
+    }
+
+    /* Rounded Button Compact - 20px border radius, 10px padding */
+    .btn-compact-white {
+      background: var(--color-daylight-canvas);
+      color: var(--color-midnight-base);
+      border-radius: var(--radius-2xl-2, 20px);
+      padding: var(--spacing-10);
+      font-size: var(--text-caption);
+    }
+    .btn-compact-white:hover {
+      background: var(--color-ghost-gray);
+    }
+
+    .btn-compact-black {
+      background: var(--color-midnight-base);
+      color: var(--color-daylight-canvas);
+      border-radius: var(--radius-2xl-2, 20px);
+      padding: var(--spacing-10);
+      font-size: var(--text-caption);
+    }
+    .btn-compact-black:hover {
+      background: #222222;
+    }
+
+    /* Ghost Button Inverse - Transparent background, white text/border, 0px border radius */
+    .btn-ghost-inverse {
+      background: transparent;
+      color: var(--color-daylight-canvas);
+      border: 1.5px solid var(--color-daylight-canvas);
+      border-radius: 0px;
+      padding: var(--spacing-15) var(--spacing-25);
+      font-size: var(--text-body);
+    }
+    .btn-ghost-inverse:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Ghost Button Standard - Transparent background, black text/border, 0px border radius */
+    .btn-ghost-standard {
+      background: transparent;
+      color: var(--color-midnight-base);
+      border: 1.5px solid var(--color-midnight-base);
+      border-radius: 0px;
+      padding: var(--spacing-15) var(--spacing-25);
+      font-size: var(--text-body);
+    }
+    .btn-ghost-standard:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    /* ============================================================
+       COMPONENTS: CARDS
+       ============================================================ */
+    /* Card Elevated - White background, 24px border radius, no shadow */
+    .card-elevated {
+      background: var(--color-daylight-canvas);
+      border-radius: var(--radius-default);
+      padding: var(--spacing-40) var(--spacing-30) var(--spacing-30);
+      border: 1px solid var(--color-ghost-gray);
+    }
+
+    /* Card Elevated Shadowed - Arctic Mist background, 24px border radius, subtle shadow */
+    .card-elevated-shadowed {
+      background: var(--color-arctic-mist);
+      border-radius: var(--radius-default);
+      padding: var(--spacing-30);
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--color-ghost-gray);
+    }
+
+    /* ============================================================
+       NAV BAR
+       ============================================================ */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 14px 0;
+      background: rgba(0, 0, 0, 0.97);
+      backdrop-filter: saturate(180%) blur(16px);
+      -webkit-backdrop-filter: saturate(180%) blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+      color: var(--color-daylight-canvas);
+      transition: background var(--transition-fast);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--spacing-24);
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-10);
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .brand-mark {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      background: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .brand-mark::after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+      background: var(--color-midnight-base);
+    }
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.92);
+      padding: 0;
+      border-radius: 0;
+      transition: color var(--transition-fast);
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: #ffffff;
+      background: transparent;
+    }
+    .nav .btn {
+      padding: 8px 14px;
+      font-size: 12px;
+      border-radius: 999px;
+    }
+
+    /* ============================================================
+       SECTION 1: HERO (Dark full-bleed)
+       ============================================================ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      text-align: left;
+      padding: 136px 0 110px;
+      overflow: hidden;
+      background: var(--color-midnight-base);
+      color: var(--color-daylight-canvas);
+    }
+    .hero-video-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .hero-video-bg video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    .hero-video-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.5) 45%, rgba(0, 0, 0, 0.2) 100%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding-inline: var(--gutter);
+    }
+    .hero-eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.78);
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      margin-bottom: var(--heading-to-body-gap);
+      max-width: none;
+      color: var(--color-daylight-canvas);
+    }
+    .hero .lede {
+      font-size: 18px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.85);
+      max-width: 640px;
+      margin: 0 0 30px;
+      line-height: 1.5;
+    }
+    .hero-cta-row {
+      display: flex;
+      gap: 12px;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+    }
+
+    /* ============================================================
+       SECTION 2: IMPACT STATS (Light Arctic Mist background)
+       ============================================================ */
+    .impact {
+      padding: 100px 0 92px;
+      text-align: left;
+    }
+    .impact-intro {
+      max-width: none;
+      text-align: left;
+      margin-bottom: 0;
+    }
+    .impact h2 {
+      margin-bottom: var(--heading-to-body-gap);
+    }
+    .impact .body {
+      font-size: 18px;
+      color: #1b1b1b;
+      max-width: 640px;
+      margin: 0 0 64px;
+      line-height: 1.5;
+      letter-spacing: 0;
+      font-family: var(--font-proxima-nova);
+      font-weight: 400;
+    }
+    .impact-image {
+      position: relative;
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      aspect-ratio: 16 / 7;
+      background: var(--color-daylight-canvas);
+      border-radius: var(--radius-media);
+      overflow: hidden;
+      border: 1px solid var(--color-ghost-gray);
+    }
+    .impact-image .placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--text-caption);
+      color: var(--color-gravel-scale);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .impact-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--spacing-24);
+      width: 100%;
+      max-width: none;
+      margin: 32px 0 0;
+      align-items: stretch;
+    }
+    .stat-card {
+      background: var(--color-daylight-canvas);
+      border: 1px solid var(--color-ghost-gray);
+      border-radius: var(--radius-default);
+      padding: var(--spacing-30) var(--spacing-24);
+      text-align: center;
+      box-shadow: var(--shadow-md);
+      height: 100%;
+    }
+    .stat-card .stat-value {
+      font-size: var(--text-display-sm);
+      font-weight: 700;
+      letter-spacing: var(--tracking-display-sm);
+      line-height: var(--leading-display-sm);
+      margin-bottom: var(--spacing-8);
+      color: var(--color-midnight-base);
+    }
+    .stat-card .stat-value .accent { color: var(--color-deep-indigo); }
+    .stat-card .stat-label {
+      font-size: var(--text-caption);
+      color: var(--color-stone-accent);
+      line-height: var(--leading-caption);
+    }
+    /* ============================================================
+       SECTION 3: FULL PICTURE - FEATURE TABS (Light Daylight Canvas background)
+       ============================================================ */
+    .full-picture {
+      padding: 100px 0 92px;
+    }
+    .full-picture .section-head {
+      margin-bottom: 0;
+    }
+    .full-picture .section-head p {
+      color: #1b1b1b;
+    }
+
+    .feature-tabs-scroll {
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      margin-bottom: var(--spacing-50);
+    }
+    .feature-tabs-scroll::-webkit-scrollbar {
+      display: none;
+    }
+    .feature-tabs-nav {
+      display: flex;
+      justify-content: flex-start;
+      align-items: stretch;
+      gap: 14px;
+      flex-wrap: nowrap;
+      position: relative;
+      width: max-content;
+      min-width: 100%;
+      border-bottom: 1px solid var(--color-ghost-gray);
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+    .feature-tabs-indicator {
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      height: 2px;
+      width: 0;
+      background: var(--color-deep-indigo);
+      border-radius: 1px;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .feature-tab-btn {
+      flex-shrink: 0;
+      padding: 10px 6px 12px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--color-gravel-scale);
+      border-bottom: none;
+      background: none;
+      transition: color var(--transition-fast);
+      white-space: nowrap;
+    }
+    .feature-tab-btn:hover { color: var(--color-stone-accent); }
+    .feature-tab-btn.active {
+      color: var(--color-midnight-base);
+    }
+
+    .feature-tab-panel {
+      display: none;
+    }
+    .feature-tab-panel.active {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-50);
+      align-items: center;
+    }
+    .feature-tab-visual {
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      overflow: hidden;
+      margin: 0 auto;
+      width: fit-content;
+      max-width: 100%;
+    }
+    .feature-tab-visual img {
+      width: auto;
+      height: auto;
+      max-height: 560px;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .feature-tab-visual .placeholder {
+      width: 290px;
+      max-width: 100%;
+      aspect-ratio: 9 / 16;
+      max-height: 560px;
+      background: var(--color-arctic-mist);
+      border: 1px solid var(--color-ghost-gray);
+      border-radius: var(--radius-media);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--text-caption);
+      color: var(--color-gravel-scale);
+      text-align: center;
+      padding: var(--spacing-20);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .feature-tab-text { max-width: 500px; }
+    .feature-tab-text .badge {
+      display: inline-block;
+      font-size: var(--text-caption);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-deep-indigo);
+      background: rgba(74, 83, 255, 0.08);
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      margin-bottom: var(--spacing-20);
+    }
+    .feature-tab-text h3 {
+      font-size: 36px;
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: var(--spacing-16);
+    }
+    .feature-tab-text .body {
+      font-size: var(--text-body);
+      color: var(--color-stone-accent);
+      line-height: var(--leading-body);
+      margin-bottom: var(--spacing-30);
+    }
+    .spotlight {
+      /* Utilizing Card Elevated Shadowed from Style Guide */
+      background: var(--color-arctic-mist);
+      border-radius: var(--radius-default);
+      padding: var(--spacing-24);
+      border: 1px solid var(--color-ghost-gray);
+      box-shadow: var(--shadow-md);
+    }
+    .spotlight .spotlight-label {
+      font-size: var(--text-caption);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-deep-indigo);
+      margin-bottom: var(--spacing-12);
+    }
+    .spotlight blockquote {
+      font-size: var(--text-body);
+      color: var(--color-midnight-base);
+      font-style: italic;
+      line-height: 1.6;
+      margin-bottom: var(--spacing-12);
+    }
+    .spotlight .spotlight-author {
+      font-size: var(--text-caption);
+      color: var(--color-stone-accent);
+      font-style: normal;
+      font-weight: 600;
+    }
+    .feature-disclaimer {
+      margin-top: var(--spacing-16);
+      font-size: var(--text-caption);
+      color: var(--color-gravel-scale);
+    }
+
+    /* ============================================================
+       SECTION 4: PRODUCT SHOWCASE (single NeuroBand)
+       ============================================================ */
+    .choose-device {
+      padding: 72px 0 72px;
+      background: var(--color-midnight-base);
+      color: var(--color-daylight-canvas);
+    }
+    .choose-device > .container > h2 {
+      margin-bottom: 16px;
+      color: var(--color-daylight-canvas);
+      font-size: clamp(48px, 6vw, 80px);
+    }
+    .product-section-lede {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.5;
+      color: var(--color-text-secondary);
+      max-width: 560px;
+      margin: 0 0 36px;
+    }
+    .product-showcase-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      align-items: stretch;
+      max-width: 1120px;
+      margin-inline: auto;
+    }
+    .product-gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      height: 100%;
+      min-height: 100%;
+    }
+    .product-gallery-main {
+      flex: 1;
+      min-height: 320px;
+      background: #000;
+      border-radius: 16px;
+      padding: 24px 20px;
+      overflow: hidden;
+      position: relative;
+    }
+    .product-gallery-main img,
+    .product-gallery-main video {
+      position: absolute;
+      inset: 24px 20px;
+      width: calc(100% - 40px);
+      height: calc(100% - 48px);
+      object-fit: contain;
+      display: block;
+      z-index: 1;
+      transition: opacity 0.35s ease;
+    }
+    .product-gallery-main img.is-fading {
+      opacity: 0;
+    }
+    .product-gallery-main img[hidden],
+    .product-gallery-main video[hidden] {
+      display: none;
+    }
+    .product-gallery-fallback:not([hidden]) {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.45);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 24px;
+      line-height: 1.6;
+    }
+    .product-gallery-fallback[hidden] {
+      display: none;
+    }
+    .product-gallery-thumbs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+    .product-thumb {
+      border: none;
+      border-radius: 0;
+      padding: 0;
+      background: transparent;
+      cursor: pointer;
+      transition: transform var(--transition-fast);
+      display: block;
+    }
+    .product-thumb:hover {
+      transform: translateY(-1px);
+    }
+    .product-thumb-frame {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 8px;
+      background: #000;
+      border: 2px solid rgba(255, 255, 255, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition: border-color var(--transition-fast);
+    }
+    .product-thumb.is-active .product-thumb-frame {
+      border-color: rgba(255, 255, 255, 0.55);
+    }
+    .product-thumb-frame img,
+    .product-thumb-frame video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      pointer-events: none;
+    }
+    .product-spec-panel {
+      border: none;
+      border-radius: 16px;
+      padding: 28px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      color: var(--color-midnight-base);
+      background: linear-gradient(180deg, #a8d4f0 0%, #e8f3fb 55%, #f4f9fd 100%);
+    }
+    .product-tier {
+      font-size: clamp(26px, 2.4vw, 32px);
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-align: center;
+      text-indent: 0.28em;
+      line-height: 1;
+      margin: 0 0 14px;
+      text-transform: uppercase;
+    }
+    .product-tagline {
+      font-size: 16px;
+      font-weight: 400;
+      color: #1a1a1a;
+      line-height: 1.5;
+      text-align: center;
+      margin: 0 0 20px;
+    }
+    .product-pricing {
+      margin-bottom: 20px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+    .product-mrp {
+      font-size: 15px;
+      line-height: 1.5;
+      color: #1a1a1a;
+      margin: 0 0 6px;
+    }
+    .product-mrp-label {
+      font-weight: 700;
+      margin-right: 4px;
+    }
+    .product-mrp-amount {
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .product-emi {
+      font-size: 14px;
+      font-weight: 500;
+      color: #1a1a1a;
+      margin: 0;
+    }
+    .product-spec-group {
+      margin-bottom: 18px;
+    }
+    .product-spec-group h3 {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin: 0 0 8px;
+      color: #1a1a1a;
+    }
+    .product-features {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .product-features li {
+      font-size: 14px;
+      color: #1a1a1a;
+      padding: 4px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.45;
+    }
+    .product-features li::before {
+      content: '✓';
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .product-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: auto;
+      flex-shrink: 0;
+    }
+    .btn-product-coming-soon {
+      width: 100%;
+      background: #d4d4d4;
+      color: #5a5a5a;
+      border: none;
+      border-radius: var(--radius-pill);
+      padding: 14px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      cursor: not-allowed;
+      text-align: center;
+    }
+    .btn-product-coming-soon:hover { transform: none; }
+    .btn-product-waitlist {
+      width: 100%;
+      background: var(--color-midnight-base);
+      color: var(--color-daylight-canvas);
+      border-radius: var(--radius-pill);
+      padding: 14px 18px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+    .btn-product-waitlist:hover {
+      background: #222;
+      transform: none;
+    }
+    .product-spec-note {
+      margin-top: 14px;
+      font-size: 11px;
+      color: rgba(0, 0, 0, 0.5);
+      line-height: 1.45;
+      text-align: center;
+    }
+
+    /* ============================================================
+       SECTION 5: BACKED BY NEUROSCIENCE (Dark full-bleed)
+       ============================================================ */
+    .backed {
+      padding: 100px 0 92px;
+      overflow: hidden;
+    }
+    .backed .section-head {
+      margin-bottom: var(--body-to-content-gap);
+    }
+    .backed .section-head p {
+      color: var(--color-text-secondary);
+    }
+    .experts-track {
+      display: flex;
+      gap: var(--spacing-20);
+      animation: scrollExperts 32s linear infinite;
+      width: max-content;
+    }
+    .experts-track:hover { animation-play-state: paused; }
+    @keyframes scrollExperts {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .expert-card {
+      flex-shrink: 0;
+      width: 250px;
+      background: #111111;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-default);
+      overflow: hidden;
+      transition: border-color var(--transition-fast);
+    }
+    .expert-card:hover { border-color: rgba(255, 255, 255, 0.2); }
+    .expert-card .expert-photo {
+      aspect-ratio: 1 / 1;
+      background: #1a1a1a;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+    }
+    .expert-card .expert-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .expert-card .expert-info {
+      padding: var(--spacing-20);
+    }
+    .expert-card .expert-name {
+      font-size: var(--text-body);
+      font-weight: 600;
+      margin-bottom: var(--spacing-5);
+    }
+    .expert-card .expert-title {
+      font-size: var(--text-caption);
+      color: var(--color-text-muted);
+    }
+
+    /* ============================================================
+       SECTION 6: BUILT FOR ALL DAY (Light Daylight Canvas background)
+       ============================================================ */
+    .built-section {
+      padding: 100px 0 92px;
+    }
+    .built-section h2 {
+      margin-bottom: var(--body-to-content-gap);
+    }
+    .built-interactive {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: var(--spacing-50);
+      align-items: center;
+    }
+    .built-steps {
+      display: flex;
+      flex-direction: column;
+    }
+    .built-step {
+      display: grid;
+      grid-template-columns: 3px 1fr;
+      gap: var(--spacing-20);
+      text-align: left;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 16px 0;
+      align-items: stretch;
+      width: 100%;
+    }
+    .built-step-track {
+      position: relative;
+      width: 3px;
+      align-self: stretch;
+      min-height: 24px;
+      background: var(--color-ghost-gray);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .built-step-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 0;
+      background: var(--color-deep-indigo);
+      border-radius: 3px;
+    }
+    .built-step.active .built-step-fill {
+      animation: builtFill 5s linear forwards;
+    }
+    @keyframes builtFill {
+      from { height: 0; }
+      to { height: 100%; }
+    }
+    .built-interactive.is-paused .built-step.active .built-step-fill {
+      animation-play-state: paused;
+    }
+    .built-step-number {
+      display: none;
+      font-size: var(--text-caption);
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-deep-indigo);
+      margin-bottom: var(--spacing-8);
+    }
+    .built-step.active .built-step-number { display: block; }
+    .built-step-title {
+      display: block;
+      font-size: clamp(20px, 2vw, 26px);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--color-gravel-scale);
+      transition: color var(--transition-fast);
+    }
+    .built-step.active .built-step-title,
+    .built-step:hover .built-step-title {
+      color: var(--color-midnight-base);
+    }
+    .built-step-desc {
+      display: none;
+      margin-top: var(--spacing-12);
+      font-size: var(--text-body);
+      color: var(--color-stone-accent);
+      line-height: 1.5;
+      max-width: 440px;
+    }
+    .built-step.active .built-step-desc { display: block; }
+    .built-media {
+      position: relative;
+      width: 100%;
+      max-width: 460px;
+      aspect-ratio: 4 / 5;
+      margin-left: auto;
+      border-radius: var(--radius-default);
+      overflow: hidden;
+      background: var(--color-arctic-mist);
+      border: 1px solid var(--color-ghost-gray);
+      box-shadow: var(--shadow-md);
+    }
+    .built-media-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: opacity 0.4s ease;
+    }
+    .built-media-img.is-fading { opacity: 0; }
+    .built-media-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--spacing-24);
+      font-size: var(--text-caption);
+      color: var(--color-gravel-scale);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .built-media-placeholder[hidden] { display: none; }
+
+    /* ============================================================
+       SECTION 7: WAYS TO WEAR (Light Arctic Mist background)
+       ============================================================ */
+    .ways-to-wear {
+      padding: 100px 0 92px;
+    }
+    .ways-to-wear h2 {
+      margin-bottom: var(--spacing-16);
+    }
+    .ways-to-wear .sub {
+      color: #1b1b1b;
+      margin-bottom: var(--body-to-content-gap);
+    }
+    .wear-showcase {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: clamp(40px, 5vw, 72px);
+      align-items: center;
+    }
+    .wear-showcase-media {
+      position: relative;
+      width: 100%;
+      max-width: 520px;
+      aspect-ratio: 4 / 5;
+      border-radius: var(--radius-default);
+      overflow: hidden;
+      background: var(--color-daylight-canvas);
+      border: 1px solid var(--color-ghost-gray);
+    }
+    .wear-media-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: opacity 0.4s ease;
+    }
+    .wear-media-img.is-fading { opacity: 0; }
+    .wear-media-img[hidden] { display: none; }
+    .wear-media-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--spacing-24);
+      font-size: var(--text-caption);
+      color: var(--color-gravel-scale);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .wear-media-placeholder[hidden] { display: none; }
+    .wear-showcase-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding-top: 4px;
+    }
+    .wear-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 10px;
+      margin-bottom: clamp(44px, 5vw, 56px);
+    }
+    .wear-tab-btn {
+      position: relative;
+      overflow: hidden;
+      padding: 12px 22px;
+      border-radius: var(--radius-pill);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #6b6b6b;
+      background: var(--color-daylight-canvas);
+      border: 1px solid var(--color-ghost-gray);
+      transition: color var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast);
+    }
+    .wear-tab-btn:hover { border-color: var(--color-stone-accent); color: var(--color-midnight-base); }
+    .wear-tab-btn.active {
+      background: var(--color-midnight-base);
+      color: var(--color-daylight-canvas);
+      border-color: var(--color-midnight-base);
+    }
+    .wear-tab-fill {
+      position: absolute;
+      bottom: 6px;
+      left: 12px;
+      height: 2px;
+      width: 0;
+      opacity: 0;
+      pointer-events: none;
+      background: var(--color-daylight-canvas);
+      border-radius: 1px;
+    }
+    .wear-tab-btn.active .wear-tab-fill {
+      animation: wearTabFill 5s linear forwards;
+    }
+    @keyframes wearTabFill {
+      from { width: 0; }
+      to { width: calc(100% - 24px); }
+    }
+    .wear-showcase.is-paused .wear-tab-btn.active .wear-tab-fill {
+      animation-play-state: paused;
+    }
+    .wear-panel {
+      display: none;
+      width: 100%;
+      max-width: 520px;
+    }
+    .wear-panel.active {
+      display: block;
+    }
+    .wear-text h3 {
+      font-size: clamp(32px, 3.2vw, 42px);
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      margin: 0 0 20px;
+      color: var(--color-midnight-base);
+    }
+    .wear-text p {
+      font-size: clamp(17px, 1.6vw, 20px);
+      font-weight: 400;
+      color: #1a1a1a;
+      line-height: 1.55;
+      margin: 0;
+      max-width: 46ch;
+    }
+
+    /* ============================================================
+       SECTION 8: CTA / WAITLIST (Dark full-bleed)
+       ============================================================ */
+    .cta-section {
+      padding: 100px 0 92px;
+      text-align: left;
+      background: var(--color-midnight-base);
+      color: var(--color-daylight-canvas);
+    }
+    .cta-section h2 .accent-line {
+      color: var(--color-text-muted);
+    }
+    .cta-section p.cta-lede {
+      color: var(--color-text-secondary);
+    }
+    .cta-form {
+      display: flex;
+      gap: var(--spacing-12);
+      max-width: 480px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    /* Input Dark Token */
+    .cta-form input {
+      flex: 1;
+      min-width: 220px;
+      padding: var(--spacing-15) var(--spacing-20);
+      border-radius: var(--radius-pill);
+      border: 1.5px solid var(--color-daylight-canvas);
+      background: var(--color-midnight-base);
+      color: var(--color-daylight-canvas);
+      font-size: var(--text-body);
+      font-family: inherit;
+      outline: none;
+      transition: border-color var(--transition-fast);
+    }
+    .cta-form input:focus {
+      border-color: var(--color-deep-indigo);
+    }
+    .cta-trust {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--spacing-24);
+      max-width: 650px;
+      margin: var(--spacing-50) auto 0;
+      padding-top: var(--spacing-30);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .cta-trust-val {
+      font-size: var(--text-heading);
+      font-weight: 700;
+      letter-spacing: var(--tracking-heading);
+    }
+    .cta-trust-lbl {
+      font-size: var(--text-caption);
+      color: var(--color-text-muted);
+      margin-top: var(--spacing-5);
+    }
+
+    /* ============================================================
+       FOOTER (Dark)
+       ============================================================ */
+    footer {
+      padding: var(--spacing-80) 0 var(--spacing-40);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: clamp(48px, 8vw, 96px);
+      flex-wrap: wrap;
+      margin-bottom: var(--spacing-50);
+    }
+    .footer-brand {
+      text-align: center;
+      margin-bottom: var(--spacing-50);
+      padding-bottom: var(--spacing-40);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .footer-brand .brand {
+      justify-content: center;
+      margin: 0 auto var(--spacing-20);
+      font-size: 32px;
+      letter-spacing: 0.1em;
+    }
+    .footer-brand .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+    }
+    .footer-brand .brand-mark::after {
+      width: 10px;
+      height: 10px;
+    }
+    .footer-brand p {
+      font-size: var(--text-body);
+      color: var(--color-text-muted);
+      line-height: 1.6;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .footer-col {
+      text-align: center;
+      min-width: 120px;
+    }
+    .footer-col h5 {
+      font-size: var(--text-caption);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-bottom: var(--spacing-20);
+    }
+    .footer-col a {
+      display: block;
+      font-size: var(--text-caption);
+      color: var(--color-text-secondary);
+      padding: 6px 0;
+      transition: color var(--transition-fast);
+    }
+    .footer-col a:hover { color: var(--color-daylight-canvas); }
+    .footer-bottom {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      padding-top: var(--spacing-32);
+      gap: var(--spacing-24);
+      flex-wrap: wrap;
+    }
+    .footer-bottom .copyright {
+      font-size: var(--text-caption);
+      color: var(--color-text-muted);
+      text-align: center;
+    }
+    .footer-bottom .footer-legal {
+      display: flex;
+      gap: var(--spacing-20);
+      position: absolute;
+      right: 0;
+    }
+    .footer-bottom .footer-legal a {
+      font-size: var(--text-caption);
+      color: var(--color-text-muted);
+      transition: color var(--transition-fast);
+    }
+    .footer-bottom .footer-legal a:hover { color: var(--color-daylight-canvas); }
+
+    /* ============================================================
+       SCROLL REVEAL / INTERACTION ANIMATIONS
+       ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+    .reveal-stagger > * {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal-stagger.in > * { opacity: 1; transform: translateY(0); }
+    .reveal-stagger.in > *:nth-child(1) { transition-delay: 0.05s; }
+    .reveal-stagger.in > *:nth-child(2) { transition-delay: 0.12s; }
+    .reveal-stagger.in > *:nth-child(3) { transition-delay: 0.19s; }
+    .reveal-stagger.in > *:nth-child(4) { transition-delay: 0.26s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+      .reveal, .reveal-stagger > * { opacity: 1 !important; transform: none !important; }
+    }
+
+    /* ============================================================
+       RESPONSIVE BREAKPOINTS
+       ============================================================ */
+    @media (max-width: 1024px) {
+      :root { --gutter: var(--spacing-24); }
+      .hero { min-height: auto; padding: 124px 0 64px; }
+      .product-showcase-layout { grid-template-columns: 1fr; max-width: 480px; }
+      .product-gallery { height: auto; min-height: 0; }
+      .product-gallery-main { min-height: 260px; flex: none; }
+      .choose-device > .container > h2 { font-size: 48px; }
+      .product-gallery-thumbs { grid-template-columns: repeat(2, 1fr); }
+      .built-interactive { grid-template-columns: 1fr; gap: var(--spacing-30); }
+      .built-media { order: -1; margin: 0 auto; }
+      .wear-showcase { grid-template-columns: 1fr; gap: var(--spacing-30); }
+      .wear-showcase-media { order: -1; margin: 0 auto; max-width: 420px; }
+      .feature-tab-panel.active { grid-template-columns: 1fr; }
+      .feature-tab-visual { max-width: 290px; order: -1; }
+      .footer-links { gap: 40px; }
+      .footer-col { min-width: 140px; }
+      .stats-row { grid-template-columns: 1fr; max-width: 360px; margin: 24px auto 0; }
+      .experts-track { animation-duration: 22s; }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .wear-showcase-media { max-width: 100%; }
+      .hero { padding-top: 112px; }
+      .hero h1,
+      .impact h2,
+      .section-head h2,
+      .choose-device > .container > h2,
+      .built-section h2,
+      .ways-to-wear > .container > h2,
+      .cta-section h2 {
+        font-size: 48px;
+        line-height: 1;
+        margin-bottom: 32px;
+        font-weight: 400;
+        letter-spacing: -0.03em;
+      }
+      .display-heading-line { white-space: normal; }
+      .feature-tab-text h3,
+      .wear-text h3 { font-size: 32px; margin-bottom: 18px; }
+      .wear-text p { font-size: 17px; }
+      .wear-tabs { margin-bottom: 40px; }
+      .impact { padding: 64px 0 72px; }
+      .impact .body { font-size: 16px; margin-bottom: 40px; }
+      .full-picture,
+      .choose-device,
+      .backed,
+      .built-section,
+      .ways-to-wear,
+      .cta-section { padding: 64px 0 72px; }
+      .cta-form { max-width: 100%; }
+      .footer-bottom { flex-direction: column; }
+      .footer-bottom .footer-legal { position: static; }
+      .footer-links { flex-direction: column; align-items: center; gap: 32px; }
+      .footer-brand .brand { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       STICKY NAVIGATION
+       ============================================================ -->
+  <header class="nav" id="nav">
+    <div class="container nav-inner">
+      <a href="#hero" class="brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        NeuroBand
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#devices">Buy NeuroBand</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#science">Why NeuroBand</a>
+        <a href="#accessories">Buy Accessories</a>
+      </nav>
+      <a href="#cta" class="btn btn-bold-white btn-sm">Join Waitlist</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         1. HERO (Dark Section)
+         ============================================================ -->
+    <section class="hero" id="hero">
+      <div class="hero-video-bg">
+        <video autoplay muted loop playsinline preload="auto" poster="Images/Image_front.jpg">
+          <source src="Video/Vid1.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="hero-content reveal">
+        <p class="hero-eyebrow">Cognitive Wellness Wearable</p>
+        <h1>
+          <span class="display-heading-line">Unlock peak focus with the</span>
+          <span class="display-heading-line">all&#8209;new&nbsp;NeuroBand</span>
+        </h1>
+        <p class="lede">The wearable designed for mental endurance and focus optimization. The most advanced cognitive wearable is here — designed to optimize your focus, recovery, and mental endurance.</p>
+        <div class="hero-cta-row">
+          <a href="#cta" class="btn btn-bold-white">Join the waitlist</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         2. IMPACT STATS (Light Section - Arctic Mist background)
+         ============================================================ -->
+    <section class="impact section-light-canvas" id="impact">
+      <div class="container">
+        <div class="reveal impact-intro">
+          <h2>
+            <span class="display-heading-line">Wear NeuroBand daily,</span>
+            <span class="display-heading-line">improve your health</span>
+          </h2>
+          <p class="body">Daily NeuroBand wear is linked to 91 more minutes of weekly activity, 2.3 more hours of sleep per week, and over 10% higher HRV. Members see faster gains, stronger habits, and better outcomes across their goals.*</p>
+        </div>
+
+        <div class="impact-image reveal">
+          <img src="Images/Image6.jpg" alt="Professional working at a desk with NeuroBand app overlays showing activity score and brain state summary" loading="lazy" />
+        </div>
+
+        <div class="stats-row reveal-stagger">
+          <div class="stat-card">
+            <p class="stat-value">40<span class="accent">%</span></p>
+            <p class="stat-label">Fewer focus crashes per week</p>
+          </div>
+          <div class="stat-card">
+            <p class="stat-value">2<span class="accent">×</span></p>
+            <p class="stat-label">Faster cognitive recovery between sessions</p>
+          </div>
+          <div class="stat-card">
+            <p class="stat-value">89<span class="accent">%</span></p>
+            <p class="stat-label">Of burnout costs come from presenteeism</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         3. FULL PICTURE — FEATURE TABS (Light Section - Daylight Canvas background)
+         ============================================================ -->
+    <section class="full-picture section-light-canvas" id="features">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>
+            <span class="display-heading-line">Unlock the full picture of your</span>
+            <span class="display-heading-line">cognitive health</span>
+          </h2>
+          <p>With 24/7 monitoring across focus, strain, and recovery, NeuroBand gives you a complete view of your mental performance — so you can make smarter decisions every day.</p>
+        </div>
+
+        <div class="feature-tabs-scroll reveal">
+          <div class="feature-tabs-nav" role="tablist">
+            <span class="feature-tabs-indicator" aria-hidden="true"></span>
+            <button class="feature-tab-btn active" data-tab="0" role="tab">Quantify your cognitive load</button>
+            <button class="feature-tab-btn" data-tab="1" role="tab">Predict burnout before it hits</button>
+            <button class="feature-tab-btn" data-tab="2" role="tab">Optimize your recovery</button>
+            <button class="feature-tab-btn" data-tab="3" role="tab">Measure every session's strain</button>
+            <button class="feature-tab-btn" data-tab="4" role="tab">Understand your unique patterns</button>
+          </div>
+        </div>
+
+        <!-- Tab 0 -->
+        <div class="feature-tab-panel active" data-panel="0">
+          <div class="feature-tab-visual">
+            <img src="Images/Image1.png" alt="NeuroBand app screen showing Cognitive Load Score and frequency breakdown" />
+          </div>
+          <div class="feature-tab-text">
+            <span class="badge">Available on all memberships</span>
+            <h3>Quantify your cognitive load</h3>
+            <p class="body">Understand how your brain responds to deep work, context switching, sleep deprivation, or chronic stress — a higher recovery means you're ready for peak output, while lower recovery signals it's time to rest.</p>
+            <div class="spotlight">
+              <p class="spotlight-label">Member spotlight</p>
+              <blockquote>"One life lesson that NeuroBand has helped instill is that cognitive rest days are needed. Waking up and seeing a low recovery score makes me stop and think of what I can do to help my brain."</blockquote>
+              <p class="spotlight-author">— Arjun S., UPSC Aspirant</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 1 -->
+        <div class="feature-tab-panel" data-panel="1">
+          <div class="feature-tab-visual">
+            <img src="Images/Image2.png" alt="NeuroBand app screen showing Cognitive Age compared to actual age and recovery trends" />
+          </div>
+          <div class="feature-tab-text">
+            <span class="badge">Available on Pro</span>
+            <h3>Predict burnout before it hits</h3>
+            <p class="body">Get insights and guidance on how your daily habits impact your long-term cognitive health, with Cognitive Healthspan — a powerful new way to quantify your mental age and slow your Pace of Burnout.</p>
+            <div class="spotlight">
+              <p class="spotlight-label">Member spotlight</p>
+              <blockquote>"Seeing my Cognitive Age compared to my actual age has given me a tangible measure of how my daily habits impact my long-term brain health."</blockquote>
+              <p class="spotlight-author">— Tyler O., Product Manager</p>
+            </div>
+            <p class="feature-disclaimer">This feature is for wellness purposes only and not for medical use. Not available for users under 18.</p>
+          </div>
+        </div>
+
+        <!-- Tab 2 -->
+        <div class="feature-tab-panel" data-panel="2">
+          <div class="feature-tab-visual">
+            <img src="Images/Image3.png" alt="NeuroBand app screen showing Recovery Score and daily recovery trend" />
+          </div>
+          <div class="feature-tab-text">
+            <span class="badge">Available on all memberships</span>
+            <h3>Optimize your recovery</h3>
+            <p class="body">NeuroBand tracks all stages of cognitive recovery with clinical-grade EEG accuracy and recommends optimal break timing and micro-interventions to help your brain recover and perform at its best.</p>
+            <div class="spotlight">
+              <p class="spotlight-label">Member spotlight</p>
+              <blockquote>"I give NeuroBand all the credit for giving me a sense of control over my mental energy. I genuinely don't think I've said 'I'm so burned out' more than twice in the past year."</blockquote>
+              <p class="spotlight-author">— Ali M., Software Engineer</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3 -->
+        <div class="feature-tab-panel" data-panel="3">
+          <div class="feature-tab-visual">
+            <img src="Images/Image4.png" alt="NeuroBand app screen showing Cognitive Strain Score and session breakdown" />
+          </div>
+          <div class="feature-tab-text">
+            <span class="badge">Available on all memberships</span>
+            <h3>Measure every session's strain</h3>
+            <p class="body">Understand how hard your brain is working during every deep work block, meeting, and creative session with a Cognitive Strain Score from 0–21. NeuroBand also auto-detects activity type, so you can track cognitive efforts seamlessly.</p>
+            <div class="spotlight">
+              <p class="spotlight-label">Member spotlight</p>
+              <blockquote>"NeuroBand has strengthened, fine-tuned, and leveled up my work performance AND my results. Not only do I see what my brain is capable of, but I'm also in tune with when it needs rest."</blockquote>
+              <p class="spotlight-author">— Michael J., Esports Professional</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 4 -->
+        <div class="feature-tab-panel" data-panel="4">
+          <div class="feature-tab-visual">
+            <img src="Images/Image5.png" alt="NeuroBand app screen showing peak focus hours and unique performance baseline" />
+          </div>
+          <div class="feature-tab-text">
+            <span class="badge">Available on all memberships</span>
+            <h3>Understand your unique patterns</h3>
+            <p class="body">Discover how to work, rest, and recover smarter every day, with personalized guidance tailored to your unique cognitive rhythms and daily energy cycles.</p>
+            <div class="spotlight">
+              <p class="spotlight-label">Member spotlight</p>
+              <blockquote>"As someone who values deep work, I love that NeuroBand doesn't just track my focus — it helps me optimize my schedule, recovery, and overall performance based on my actual brain data."</blockquote>
+              <p class="spotlight-author">— Samantha R., Researcher</p>
+            </div>
+            <p class="feature-disclaimer">Cognitive pattern analysis is based on personal EEG baselines. Results vary by individual. Not medical advice.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         4. PRODUCT SHOWCASE (single NeuroBand)
+         ============================================================ -->
+    <section class="choose-device" id="devices">
+      <div class="container">
+        <h2><span class="display-heading-line">Meet the NeuroBand</span></h2>
+        <p class="product-section-lede">Advanced cognitive health and performance insights to help you perform at your peak, longer.</p>
+
+        <div class="product-showcase-layout reveal">
+          <!-- Left: multi-angle gallery — drop images into Images/ folder -->
+          <div class="product-gallery">
+            <div class="product-gallery-main">
+              <img
+                id="productMainImage"
+                src="Images/Image_front.jpg"
+                alt="NeuroBand — front view"
+              />
+              <video
+                id="productMainVideo"
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                hidden
+              >
+                <source src="Video/video2.mp4" type="video/mp4" />
+              </video>
+              <p class="product-gallery-fallback" id="productGalleryFallback" hidden>Add Images/Image_front.jpg</p>
+            </div>
+            <div class="product-gallery-thumbs" role="tablist" aria-label="Product viewing angles">
+              <button type="button" class="product-thumb is-active" role="tab" aria-selected="true" aria-label="Front" data-media="image" data-src="Images/Image_front.jpg" data-alt="NeuroBand — front view">
+                <span class="product-thumb-frame">
+                  <img src="Images/Image_front.jpg" alt="" onerror="this.style.display='none'" />
+                </span>
+              </button>
+              <button type="button" class="product-thumb" role="tab" aria-selected="false" aria-label="Side" data-media="image" data-src="Images/Image_top.jpg" data-alt="NeuroBand — top view">
+                <span class="product-thumb-frame">
+                  <img src="Images/Image_top.jpg" alt="" onerror="this.style.display='none'" />
+                </span>
+              </button>
+              <button type="button" class="product-thumb" role="tab" aria-selected="false" aria-label="Worn" data-media="image" data-src="Images/Image_down.jpg" data-alt="NeuroBand — underside view">
+                <span class="product-thumb-frame">
+                  <img src="Images/Image_down.jpg" alt="" onerror="this.style.display='none'" />
+                </span>
+              </button>
+              <button type="button" class="product-thumb" role="tab" aria-selected="false" aria-label="Detail" data-media="video" data-src="Video/video2.mp4" data-alt="NeuroBand — detail view">
+                <span class="product-thumb-frame">
+                  <video muted playsinline preload="metadata" aria-hidden="true" tabindex="-1">
+                    <source src="Video/video2.mp4" type="video/mp4" />
+                  </video>
+                </span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Right: specifications -->
+          <div class="product-spec-panel">
+            <p class="product-tier">N B - 0 1</p>
+            <p class="product-tagline">The cognitive wellness wearable designed for everyone who thinks for a living.</p>
+
+            <div class="product-pricing">
+              <p class="product-mrp"><span class="product-mrp-label">MRP</span> <span class="product-mrp-amount">₹ 28,990</span></p>
+              <p class="product-emi">3 &amp; 6 month no-cost EMI available</p>
+            </div>
+
+            <div class="product-spec-group">
+              <h3>Hardware</h3>
+              <ul class="product-features">
+                <li>NeuroBand NB-01 sensor with 7+ day battery</li>
+                <li>Screen-free, distraction-free all-day wear</li>
+                <li>On-device EEG processing — data never leaves the band</li>
+              </ul>
+            </div>
+
+            <div class="product-spec-group">
+              <h3>Insights &amp; coaching</h3>
+              <ul class="product-features">
+                <li>Real-time Cognitive Load Score</li>
+                <li>Focus, Strain &amp; Recovery dashboards</li>
+                <li>Real-time Stress Monitor (EDA)</li>
+                <li>Personalized coaching based on your baseline</li>
+              </ul>
+            </div>
+
+            <div class="product-actions">
+              <button type="button" class="btn btn-product-coming-soon" disabled>Coming Soon</button>
+              <a href="#cta" class="btn btn-product-waitlist">Join the waitlist</a>
+            </div>
+            <p class="product-spec-note">Wellness use only · 18+</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         5. BACKED BY NEUROSCIENCE (Dark Section)
+         ============================================================ -->
+    <section class="backed section-dark" id="science">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>
+            <span class="display-heading-line">Backed by neuroscience.</span>
+            <span class="display-heading-line">Built for high performers.</span>
+          </h2>
+          <p>Whether you're #1 in your field or on day 1 of your journey, NeuroBand helps you optimize your focus, recovery, and cognitive longevity.</p>
+        </div>
+      </div>
+      <div class="experts-track" aria-label="Expert endorsements carousel">
+        <div class="expert-card">
+          <div class="expert-photo"><img src="Images/d1.jpg" alt="Dr. Sarah Chen" loading="lazy" /></div>
+          <div class="expert-info">
+            <p class="expert-name">Dr. Sarah Chen</p>
+            <p class="expert-title">Neuroscience Researcher, Stanford</p>
+          </div>
+        </div>
+        <div class="expert-card">
+          <div class="expert-photo"><img src="Images/d2.jpg" alt="Dr. Raj Patel" loading="lazy" /></div>
+          <div class="expert-info">
+            <p class="expert-name">Dr. Raj Patel</p>
+            <p class="expert-title">Cognitive Performance Specialist</p>
+          </div>
+        </div>
+        <div class="expert-card">
+          <div class="expert-photo"><img src="Images/d3.jpg" alt="Prof. Maria Gonzalez" loading="lazy" /></div>
+          <div class="expert-info">
+            <p class="expert-name">Prof. Maria Gonzalez</p>
+            <p class="expert-title">Sleep & Recovery Scientist</p>
+          </div>
+        </div>
+        <div class="expert-card">
+          <div class="expert-photo"><img src="Images/d4.jpg" alt="Alex Kim" loading="lazy" /></div>
+          <div class="expert-info">
+            <p class="expert-name">Alex Kim</p>
+            <p class="expert-title">Professional Esports Coach</p>
+          </div>
+        </div>
+        <div class="expert-card">
+          <div class="expert-photo"><img src="Images/d5.jpg" alt="Dr. James Wright" loading="lazy" /></div>
+          <div class="expert-info">
+            <p class="expert-name">Dr. James Wright</p>
+            <p class="expert-title">Workplace Wellness Expert</p>
+          </div>
+        </div>
+        <div class="expert-card">
+          <div class="expert-photo"><img src="Images/d7.jpg" alt="Coach David Lee" loading="lazy" /></div>
+          <div class="expert-info">
+            <p class="expert-name">Coach David Lee</p>
+            <p class="expert-title">Elite Performance Trainer</p>
+          </div>
+        </div>
+        <div class="expert-card">
+          <div class="expert-photo"><img src="Images/d8.jpg" alt="Dr. Emma Fischer" loading="lazy" /></div>
+          <div class="expert-info">
+            <p class="expert-name">Dr. Emma Fischer</p>
+            <p class="expert-title">Clinical EEG Specialist</p>
+          </div>
+        </div>
+        <div class="expert-card">
+          <div class="expert-photo"><img src="Images/d9.jpg" alt="Dr. Michael Torres" loading="lazy" /></div>
+          <div class="expert-info">
+            <p class="expert-name">Dr. Michael Torres</p>
+            <p class="expert-title">Brain Health Physician</p>
+          </div>
+        </div>
+        <!-- Duplicate set for seamless loop -->
+        <div class="expert-card" aria-hidden="true">
+          <div class="expert-photo"><img src="Images/d1.jpg" alt="" loading="lazy" /></div>
+          <div class="expert-info">
+            <p class="expert-name">Dr. Sarah Chen</p>
+            <p class="expert-title">Neuroscience Researcher, Stanford</p>
+          </div>
+        </div>
+        <div class="expert-card" aria-hidden="true">
+          <div class="expert-photo"><img src="Images/d2.jpg" alt="" loading="lazy" /></div>
+          <div class="expert-info">
+            <p class="expert-name">Dr. Raj Patel</p>
+            <p class="expert-title">Cognitive Performance Specialist</p>
+          </div>
+        </div>
+        <div class="expert-card" aria-hidden="true">
+          <div class="expert-photo"><img src="Images/d3.jpg" alt="" loading="lazy" /></div>
+          <div class="expert-info">
+            <p class="expert-name">Prof. Maria Gonzalez</p>
+            <p class="expert-title">Sleep & Recovery Scientist</p>
+          </div>
+        </div>
+        <div class="expert-card" aria-hidden="true">
+          <div class="expert-photo"><img src="Images/d4.jpg" alt="" loading="lazy" /></div>
+          <div class="expert-info">
+            <p class="expert-name">Alex Kim</p>
+            <p class="expert-title">Professional Esports Coach</p>
+          </div>
+        </div>
+        <div class="expert-card" aria-hidden="true">
+          <div class="expert-photo"><img src="Images/d5.jpg" alt="" loading="lazy" /></div>
+          <div class="expert-info">
+            <p class="expert-name">Dr. James Wright</p>
+            <p class="expert-title">Workplace Wellness Expert</p>
+          </div>
+        </div>
+        <div class="expert-card" aria-hidden="true">
+          <div class="expert-photo"><img src="Images/d7.jpg" alt="" loading="lazy" /></div>
+          <div class="expert-info">
+            <p class="expert-name">Coach David Lee</p>
+            <p class="expert-title">Elite Performance Trainer</p>
+          </div>
+        </div>
+        <div class="expert-card" aria-hidden="true">
+          <div class="expert-photo"><img src="Images/d8.jpg" alt="" loading="lazy" /></div>
+          <div class="expert-info">
+            <p class="expert-name">Dr. Emma Fischer</p>
+            <p class="expert-title">Clinical EEG Specialist</p>
+          </div>
+        </div>
+        <div class="expert-card" aria-hidden="true">
+          <div class="expert-photo"><img src="Images/d9.jpg" alt="" loading="lazy" /></div>
+          <div class="expert-info">
+            <p class="expert-name">Dr. Michael Torres</p>
+            <p class="expert-title">Brain Health Physician</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         6. BUILT FOR ALL DAY (Light Section - Daylight Canvas background)
+         ============================================================ -->
+    <section class="built-section section-light-canvas" id="how-it-works">
+      <div class="container">
+        <h2 class="reveal"><span class="display-heading-line">Built to be worn all day</span></h2>
+        <div class="built-interactive reveal is-paused">
+          <div class="built-steps" role="tablist" aria-label="How NeuroBand works">
+            <button type="button" class="built-step active" role="tab" aria-selected="true" data-step="0" data-img="Images/step1.jpg" data-alt="Person wearing NeuroBand at desk with device charging nearby">
+              <span class="built-step-track"><span class="built-step-fill"></span></span>
+              <span class="built-step-info">
+                <span class="built-step-number">Step 01</span>
+                <span class="built-step-title">Wear it all day</span>
+                <span class="built-step-desc">NeuroBand is always on — whether it's on your hand or charging — so you never miss a second of cognitive data.</span>
+              </span>
+            </button>
+            <button type="button" class="built-step" role="tab" aria-selected="false" data-step="1" data-img="Images/step2.jpg" data-alt="Person reviewing NeuroBand focus, strain, stress, and recovery dashboards at work">
+              <span class="built-step-track"><span class="built-step-fill"></span></span>
+              <span class="built-step-info">
+                <span class="built-step-number">Step 02</span>
+                <span class="built-step-title">Measure &amp; monitor everything</span>
+                <span class="built-step-desc">NeuroBand measures the metrics that have the biggest impact on your cognitive health across focus, strain, stress, recovery, and more.</span>
+              </span>
+            </button>
+            <button type="button" class="built-step" role="tab" aria-selected="false" data-step="2" data-img="Images/step3.jpg" data-alt="NeuroBand guidance notifications on phone with band on desk">
+              <span class="built-step-track"><span class="built-step-fill"></span></span>
+              <span class="built-step-info">
+                <span class="built-step-number">Step 03</span>
+                <span class="built-step-title">Receive guidance</span>
+                <span class="built-step-desc">NeuroBand delivers recommendations that translate your brain's data into clear guidance, helping you adjust habits to improve performance.</span>
+              </span>
+            </button>
+            <button type="button" class="built-step" role="tab" aria-selected="false" data-step="3" data-img="Images/step4.jpg" data-alt="Person running outdoors wearing NeuroBand">
+              <span class="built-step-track"><span class="built-step-fill"></span></span>
+              <span class="built-step-info">
+                <span class="built-step-number">Step 04</span>
+                <span class="built-step-title">Make changes</span>
+                <span class="built-step-desc">Every choice adds up — NeuroBand helps you create habit changes that lead to better cognitive health and peak performance.</span>
+              </span>
+            </button>
+          </div>
+          <div class="built-media">
+            <img class="built-media-img" id="builtMediaImg" src="Images/step1.jpg" alt="Person wearing NeuroBand at desk with device charging nearby" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         7. WAYS TO WEAR (Light Section - Arctic Mist background)
+         ============================================================ -->
+    <section class="ways-to-wear section-light-mist" id="accessories">
+      <div class="container">
+        <h2 class="reveal">
+          <span class="display-heading-line">One device, endless ways</span>
+          <span class="display-heading-line">to wear it</span>
+        </h2>
+        <p class="sub reveal">Premium materials designed for comfort, style, and performance.</p>
+
+        <div class="wear-showcase reveal is-paused">
+          <div class="wear-showcase-media">
+            <img class="wear-media-img" id="wearMediaImg" src="Images/w1.jpg" alt="Person wearing NeuroBand CoreKnit band while sleeping" />
+            <div class="wear-media-placeholder" id="wearMediaPlaceholder" hidden>[CoreKnit product photography]</div>
+          </div>
+
+          <div class="wear-showcase-content">
+            <div class="wear-tabs" role="tablist" aria-label="Band and accessory options">
+              <button type="button" class="wear-tab-btn active" data-wear="0" role="tab" aria-selected="true" data-img="Images/w1.jpg" data-alt="Person wearing NeuroBand CoreKnit band while sleeping" data-placeholder="[CoreKnit product photography]">
+                CoreKnit
+                <span class="wear-tab-fill" aria-hidden="true"></span>
+              </button>
+              <button type="button" class="wear-tab-btn" data-wear="1" role="tab" aria-selected="false" data-img="Images/w2.jpg" data-alt="Person wearing NeuroBand SportFlex band at the pool after a workout" data-placeholder="[SportFlex product photography]">
+                SportFlex
+                <span class="wear-tab-fill" aria-hidden="true"></span>
+              </button>
+              <button type="button" class="wear-tab-btn" data-wear="2" role="tab" aria-selected="false" data-img="Images/w3.jpg" data-alt="Person wearing NeuroBand SuperKnit band with formal attire" data-placeholder="[SuperKnit product photography]">
+                SuperKnit
+                <span class="wear-tab-fill" aria-hidden="true"></span>
+              </button>
+              <button type="button" class="wear-tab-btn" data-wear="3" role="tab" aria-selected="false" data-img="Images/w4.jpg" data-alt="Person wearing NeuroBand on a paddleboard with PowerPack-ready outdoor lifestyle" data-placeholder="[Wireless PowerPack product photography]">
+                PowerPack
+                <span class="wear-tab-fill" aria-hidden="true"></span>
+              </button>
+            </div>
+
+            <div class="wear-panel active" data-wearpanel="0">
+              <div class="wear-text">
+                <h3>Core to your collection</h3>
+                <p>Find your comfort with CoreKnit, your foundational band with sleek material and essential style.</p>
+              </div>
+            </div>
+            <div class="wear-panel" data-wearpanel="1">
+              <div class="wear-text">
+                <h3>For every swim &amp; sweat</h3>
+                <p>Waterproof, sweatproof, and stainproof — SportFlex is built for high-intensity workouts, outdoor adventures, and water activities.</p>
+              </div>
+            </div>
+            <div class="wear-panel" data-wearpanel="2">
+              <div class="wear-text">
+                <h3>Fit for every moment</h3>
+                <p>With a variety of options to match any look, SuperKnit keeps up with your busy schedule — from the gym, to work, to evening plans.</p>
+              </div>
+            </div>
+            <div class="wear-panel" data-wearpanel="3">
+              <div class="wear-text">
+                <h3>Never miss a moment of insights</h3>
+                <p>Wherever you go, the Wireless PowerPack goes too — it's waterproof, charges NeuroBand from 0%–100% in 2 hours, and enables continuous data for days.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         8. CTA BANNER (Dark Section)
+         ============================================================ -->
+    <section class="cta-section" id="cta">
+      <div class="container reveal">
+        <p class="hero-eyebrow" style="margin-bottom: var(--spacing-24);">Join the founding cohort</p>
+        <h2>
+          <span class="display-heading-line">Know your mind.</span>
+          <span class="display-heading-line accent-line">Before it knows you're tired.</span>
+        </h2>
+        <p class="cta-lede">
+          Join the founding cohort for early access to NB-01. First units ship Q3 2026. No spam — one launch update.
+        </p>
+        <form class="cta-form" onsubmit="event.preventDefault(); handleWaitlist(this);">
+          <input type="email" placeholder="your@email.com" required aria-label="Email address" />
+          <button type="submit" class="btn btn-bold-white">Reserve my spot</button>
+        </form>
+        <div class="cta-trust">
+          <div>
+            <p class="cta-trust-val">$1.8B</p>
+            <p class="cta-trust-lbl">consumer EEG market</p>
+          </div>
+          <div>
+            <p class="cta-trust-val">Q3 '26</p>
+            <p class="cta-trust-lbl">first cohort shipping</p>
+          </div>
+          <div>
+            <p class="cta-trust-val">On-device</p>
+            <p class="cta-trust-lbl">brain data never leaves the band</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER (Dark Section)
+       ============================================================ -->
+  <footer class="section-dark">
+    <div class="container">
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Product</h5>
+          <a href="#features">Features</a>
+          <a href="#devices">Devices</a>
+          <a href="#accessories">Accessories</a>
+          <a href="#how-it-works">How It Works</a>
+        </div>
+        <div class="footer-col">
+          <h5>Science</h5>
+          <a href="#science">Research</a>
+          <a href="neuroband_research_strategy_dashboard.html">Dashboard</a>
+          <a href="#impact">Evidence</a>
+        </div>
+        <div class="footer-col">
+          <h5>Support</h5>
+          <a href="#">Help Center</a>
+          <a href="#">Contact Us</a>
+          <a href="#">Shipping & Returns</a>
+        </div>
+      </div>
+
+      <div class="footer-brand">
+        <a href="#hero" class="brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          NeuroBand
+        </a>
+        <p>Track your mind like you track your body. The cognitive wellness wearable designed for everyone who thinks for a living.</p>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copyright">© 2026 NeuroBand · Track your mind like you track your body.</p>
+        <div class="footer-legal">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Legal</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       SCRIPTS
+       ============================================================ -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      /* ---------- Reveal on scroll ---------- */
+      const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in');
+              io.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: '0px 0px -30px 0px' }
+      );
+      revealEls.forEach((el) => io.observe(el));
+
+      /* ---------- Nav active link highlighting ---------- */
+      const navLinks = Array.from(document.querySelectorAll('.nav-links a'));
+      const sections = ['features', 'devices', 'science', 'how-it-works', 'accessories']
+        .map((id) => document.getElementById(id))
+        .filter(Boolean);
+      const sectionIO = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            navLinks.forEach((link) => {
+              link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+            });
+          });
+        },
+        { threshold: 0.25, rootMargin: '-80px 0px -40% 0px' }
+      );
+      sections.forEach((sec) => sectionIO.observe(sec));
+
+      /* ---------- Product gallery angles ---------- */
+      const productMainImage = document.getElementById('productMainImage');
+      const productMainVideo = document.getElementById('productMainVideo');
+      const productFallback = document.getElementById('productGalleryFallback');
+      const productThumbs = document.querySelectorAll('.product-thumb');
+
+      if (productMainImage?.complete && productMainImage.naturalWidth > 0) {
+        if (productFallback) productFallback.hidden = true;
+      } else {
+        productMainImage?.addEventListener('load', () => {
+          if (productFallback) productFallback.hidden = true;
+        });
+        productMainImage?.addEventListener('error', () => {
+          productMainImage.hidden = true;
+          if (productFallback) productFallback.hidden = false;
+        });
+      }
+
+      const hideProductVideo = () => {
+        if (!productMainVideo) return;
+        productMainVideo.pause();
+        productMainVideo.hidden = true;
+      };
+
+      const showProductVideo = (src) => {
+        if (!productMainVideo) return;
+        hideProductVideo();
+        productMainImage?.classList.remove('is-fading');
+        if (productMainImage) productMainImage.hidden = true;
+        if (productFallback) productFallback.hidden = true;
+
+        const source = productMainVideo.querySelector('source');
+        if (source && source.getAttribute('src') !== src) {
+          source.setAttribute('src', src);
+          productMainVideo.load();
+        }
+
+        productMainVideo.hidden = false;
+        productMainVideo.play().catch(() => {});
+      };
+
+      const showProductImage = (src, alt) => {
+        if (!productMainImage) return;
+        hideProductVideo();
+
+        productMainImage.classList.add('is-fading');
+        const preload = new Image();
+        preload.onload = () => {
+          productMainImage.src = src;
+          productMainImage.alt = alt;
+          productMainImage.hidden = false;
+          if (productFallback) productFallback.hidden = true;
+          productMainImage.classList.remove('is-fading');
+        };
+        preload.onerror = () => {
+          productMainImage.hidden = true;
+          if (productFallback) {
+            productFallback.hidden = false;
+            productFallback.textContent = 'Add ' + src;
+          }
+          productMainImage.classList.remove('is-fading');
+        };
+        preload.src = src;
+      };
+
+      productThumbs.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const src = btn.dataset.src;
+          const alt = btn.dataset.alt;
+          const media = btn.dataset.media || 'image';
+          if (!src) return;
+
+          productThumbs.forEach((b) => {
+            b.classList.toggle('is-active', b === btn);
+            b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
+          });
+
+          if (media === 'video') {
+            showProductVideo(src);
+          } else {
+            showProductImage(src, alt);
+          }
+        });
+      });
+
+      /* ---------- Feature tabs ---------- */
+      const featureTabBtns = document.querySelectorAll('.feature-tab-btn');
+      const featurePanels = document.querySelectorAll('.feature-tab-panel');
+      const featureTabsNav = document.querySelector('.feature-tabs-nav');
+      const featureTabsIndicator = document.querySelector('.feature-tabs-indicator');
+
+      const moveFeatureIndicator = (activeBtn) => {
+        if (!featureTabsIndicator || !activeBtn || !featureTabsNav) return;
+        featureTabsIndicator.style.width = `${activeBtn.offsetWidth}px`;
+        featureTabsIndicator.style.transform = `translateX(${activeBtn.offsetLeft}px)`;
+      };
+
+      const setActiveFeatureTab = (btn) => {
+        const idx = btn.dataset.tab;
+        featureTabBtns.forEach((b) => {
+          b.classList.toggle('active', b === btn);
+          b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
+        });
+        featurePanels.forEach((p) => p.classList.toggle('active', p.dataset.panel === idx));
+        moveFeatureIndicator(btn);
+        btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+      };
+
+      const activeFeatureTab = document.querySelector('.feature-tab-btn.active');
+      if (activeFeatureTab) {
+        requestAnimationFrame(() => moveFeatureIndicator(activeFeatureTab));
+      }
+
+      featureTabBtns.forEach((btn) => {
+        btn.addEventListener('click', () => setActiveFeatureTab(btn));
+      });
+
+      window.addEventListener('resize', () => {
+        const current = document.querySelector('.feature-tab-btn.active');
+        if (current) moveFeatureIndicator(current);
+      });
+
+      /* ---------- Wear tabs (WHOOP-style showcase) ---------- */
+      const wearShowcase = document.querySelector('.wear-showcase');
+      const wearBtns = document.querySelectorAll('.wear-tab-btn');
+      const wearPanels = document.querySelectorAll('.wear-panel');
+      const wearMediaImg = document.getElementById('wearMediaImg');
+      const wearMediaPlaceholder = document.getElementById('wearMediaPlaceholder');
+      const wearReduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (wearShowcase && wearBtns.length && wearPanels.length) {
+        let wearIndex = 0;
+        let wearVisible = false;
+
+        const setWearMedia = (src, alt, placeholder) => {
+          if (wearMediaImg) {
+            wearMediaImg.classList.add('is-fading');
+            window.setTimeout(() => {
+              if (src) {
+                wearMediaImg.src = src;
+                wearMediaImg.alt = alt || '';
+                wearMediaImg.hidden = false;
+                if (wearMediaPlaceholder) wearMediaPlaceholder.hidden = true;
+              } else {
+                wearMediaImg.hidden = true;
+                if (wearMediaPlaceholder) {
+                  wearMediaPlaceholder.hidden = false;
+                  wearMediaPlaceholder.textContent = placeholder || '';
+                }
+              }
+              wearMediaImg.classList.remove('is-fading');
+            }, 250);
+          } else if (wearMediaPlaceholder) {
+            wearMediaPlaceholder.textContent = placeholder || '';
+          }
+        };
+
+        const restartActiveWearFill = () => {
+          const fill = wearBtns[wearIndex]?.querySelector('.wear-tab-fill');
+          if (!fill) return;
+          fill.style.animation = 'none';
+          void fill.offsetWidth;
+          fill.style.animation = '';
+        };
+
+        const setWearTab = (index, restart = true) => {
+          wearIndex = index;
+          wearBtns.forEach((btn, idx) => {
+            const isActive = idx === index;
+            btn.classList.toggle('active', isActive);
+            btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+          });
+          wearPanels.forEach((panel) => {
+            panel.classList.toggle('active', panel.dataset.wearpanel === String(index));
+          });
+          const activeBtn = wearBtns[index];
+          setWearMedia(activeBtn.dataset.img || '', activeBtn.dataset.alt || '', activeBtn.dataset.placeholder || '');
+          if (restart) restartActiveWearFill();
+        };
+
+        wearBtns.forEach((btn, idx) => {
+          btn.addEventListener('click', () => setWearTab(idx));
+          const fill = btn.querySelector('.wear-tab-fill');
+          if (fill && !wearReduceMotion) {
+            fill.addEventListener('animationend', () => {
+              if (wearVisible && btn.classList.contains('active')) {
+                setWearTab((idx + 1) % wearBtns.length);
+              }
+            });
+          }
+        });
+
+        const wearIO = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            wearVisible = entry.isIntersecting;
+            wearShowcase.classList.toggle('is-paused', !entry.isIntersecting);
+            if (entry.isIntersecting && !wearReduceMotion) {
+              restartActiveWearFill();
+            }
+          });
+        }, { threshold: 0.35 });
+        wearIO.observe(wearShowcase);
+      }
+
+      /* ---------- Built to be worn (auto-advancing steps) ---------- */
+      const builtInteractive = document.querySelector('.built-interactive');
+      const builtSteps = document.querySelectorAll('.built-step');
+      const builtMediaImg = document.getElementById('builtMediaImg');
+      const builtReduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (builtInteractive && builtSteps.length && builtMediaImg) {
+        let builtIndex = 0;
+        let builtVisible = false;
+
+        const setBuiltMedia = (src, alt) => {
+          if (!src) return;
+          builtMediaImg.classList.add('is-fading');
+          window.setTimeout(() => {
+            builtMediaImg.src = src;
+            builtMediaImg.alt = alt || '';
+            builtMediaImg.hidden = false;
+            builtMediaImg.classList.remove('is-fading');
+          }, 250);
+        };
+
+        // Force the active step's progress line to restart from 0.
+        const restartActiveFill = () => {
+          const fill = builtSteps[builtIndex].querySelector('.built-step-fill');
+          if (!fill) return;
+          fill.style.animation = 'none';
+          void fill.offsetWidth;
+          fill.style.animation = '';
+        };
+
+        const setBuiltStep = (index, restart = true) => {
+          builtIndex = index;
+          builtSteps.forEach((step, idx) => {
+            const isActive = idx === index;
+            step.classList.toggle('active', isActive);
+            step.setAttribute('aria-selected', isActive ? 'true' : 'false');
+          });
+          const active = builtSteps[index];
+          setBuiltMedia(active.dataset.img, active.dataset.alt);
+          if (restart) restartActiveFill();
+        };
+
+        builtSteps.forEach((step, idx) => {
+          step.addEventListener('click', () => setBuiltStep(idx));
+          const fill = step.querySelector('.built-step-fill');
+          if (fill && !builtReduceMotion) {
+            fill.addEventListener('animationend', () => {
+              if (builtVisible && step.classList.contains('active')) {
+                setBuiltStep((idx + 1) % builtSteps.length);
+              }
+            });
+          }
+        });
+
+        // Only run the progress animation while the section is on screen.
+        const builtIO = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            builtVisible = entry.isIntersecting;
+            builtInteractive.classList.toggle('is-paused', !entry.isIntersecting);
+            if (entry.isIntersecting && !builtReduceMotion) {
+              restartActiveFill();
+            }
+          });
+        }, { threshold: 0.35 });
+        builtIO.observe(builtInteractive);
+      }
+    });
+
+    function handleWaitlist(form) {
+      const btn = form.querySelector('button');
+      const input = form.querySelector('input');
+      const original = btn.innerHTML;
+      btn.textContent = "You're on the list ✓";
+      btn.style.background = '#00d26a';
+      btn.style.color = '#ffffff';
+      input.value = '';
+      input.disabled = true;
+      setTimeout(() => {
+        btn.innerHTML = original;
+        btn.style.background = '';
+        btn.style.color = '';
+        input.disabled = false;
+      }, 3200);
+    }
+  </script>
+</body>
+</html>
