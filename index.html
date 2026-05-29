@@ -1361,16 +1361,8 @@
        FOOTER (Dark)
        ============================================================ */
     footer {
-      padding: var(--spacing-80) 0 var(--spacing-40);
+      padding: var(--spacing-50) 0 0;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      gap: clamp(48px, 8vw, 96px);
-      flex-wrap: wrap;
-      margin-bottom: var(--spacing-50);
     }
     .footer-brand {
       text-align: center;
@@ -1400,32 +1392,13 @@
       max-width: 480px;
       margin: 0 auto;
     }
-    .footer-col {
-      text-align: center;
-      min-width: 120px;
-    }
-    .footer-col h5 {
-      font-size: var(--text-caption);
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--color-text-muted);
-      margin-bottom: var(--spacing-20);
-    }
-    .footer-col a {
-      display: block;
-      font-size: var(--text-caption);
-      color: var(--color-text-secondary);
-      padding: 6px 0;
-      transition: color var(--transition-fast);
-    }
-    .footer-col a:hover { color: var(--color-daylight-canvas); }
     .footer-bottom {
       display: flex;
       justify-content: center;
       align-items: center;
       position: relative;
       padding-top: var(--spacing-32);
+      padding-bottom: 80px;
       gap: var(--spacing-24);
       flex-wrap: wrap;
     }
@@ -1504,8 +1477,6 @@
       .feature-tab-panel.active { grid-template-columns: 1fr; }
       .feature-tab-visual { max-width: 290px; order: -1; }
       .footer-bottom .footer-legal { position: static; }
-      .footer-links { gap: 40px; }
-      .footer-col { min-width: 140px; }
       .stats-row { grid-template-columns: 1fr; max-width: 360px; margin: 24px auto 0; }
       .experts-track { animation-duration: 22s; }
     }
@@ -1549,7 +1520,6 @@
       .cta-form { max-width: 100%; }
       .footer-bottom { flex-direction: column; }
       .footer-bottom .footer-legal { position: static; }
-      .footer-links { flex-direction: column; align-items: center; gap: 32px; }
       .footer-brand .brand { font-size: 26px; }
     }
   </style>
@@ -1566,10 +1536,9 @@
         NeuroBand
       </a>
       <nav class="nav-links" aria-label="Primary">
-        <a href="#devices">Buy NeuroBand</a>
-        <a href="#how-it-works">How It Works</a>
-        <a href="#science">Why NeuroBand</a>
-        <a href="#accessories">Buy Accessories</a>
+        <a href="#unlock-potential">Our Solution</a>
+        <a href="#science">Backed by Experts</a>
+        <a href="#features">Features</a>
       </nav>
       <a href="#cta" class="btn btn-bold-white btn-sm">Join Waitlist</a>
     </div>
@@ -1637,7 +1606,7 @@
     <!-- ============================================================
          3. FULL PICTURE — FEATURE TABS (Light Section - Daylight Canvas background)
          ============================================================ -->
-    <section class="full-picture section-light-canvas" id="features">
+    <section class="full-picture section-light-canvas" id="unlock-potential">
       <div class="container">
         <div class="section-head reveal">
           <h2>
@@ -1975,7 +1944,7 @@
     <!-- ============================================================
          6. BUILT FOR ALL DAY (Light Section - Daylight Canvas background)
          ============================================================ -->
-    <section class="built-section section-light-canvas" id="how-it-works">
+    <section class="built-section section-light-canvas" id="features">
       <div class="container">
         <h2 class="reveal"><span class="display-heading-line">Built to be worn all day</span></h2>
         <div class="built-interactive reveal is-paused">
@@ -2127,28 +2096,6 @@
        ============================================================ -->
   <footer class="section-dark">
     <div class="container">
-      <div class="footer-links">
-        <div class="footer-col">
-          <h5>Product</h5>
-          <a href="#features">Features</a>
-          <a href="#devices">Devices</a>
-          <a href="#accessories">Accessories</a>
-          <a href="#how-it-works">How It Works</a>
-        </div>
-        <div class="footer-col">
-          <h5>Science</h5>
-          <a href="#science">Research</a>
-          <a href="neuroband_research_strategy_dashboard.html">Dashboard</a>
-          <a href="#impact">Evidence</a>
-        </div>
-        <div class="footer-col">
-          <h5>Support</h5>
-          <a href="#">Help Center</a>
-          <a href="#">Contact Us</a>
-          <a href="#">Shipping & Returns</a>
-        </div>
-      </div>
-
       <div class="footer-brand">
         <a href="#hero" class="brand">
           <span class="brand-mark" aria-hidden="true"></span>
@@ -2190,7 +2137,7 @@
 
       /* ---------- Nav active link highlighting ---------- */
       const navLinks = Array.from(document.querySelectorAll('.nav-links a'));
-      const sections = ['features', 'devices', 'science', 'how-it-works', 'accessories']
+      const sections = ['unlock-potential', 'science', 'features']
         .map((id) => document.getElementById(id))
         .filter(Boolean);
       const sectionIO = new IntersectionObserver(
