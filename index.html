@@ -147,6 +147,8 @@
     .hero h1,
     .impact h2,
     .section-head h2,
+    .market-audience .market-block h2,
+    .market-audience .audience-block h2,
     .choose-device > .container > h2,
     .built-section h2,
     .ways-to-wear > .container > h2,
@@ -727,6 +729,510 @@
       margin-top: var(--spacing-16);
       font-size: var(--text-caption);
       color: var(--color-gravel-scale);
+    }
+
+    /* ============================================================
+       SECTION: MARKET ANALYSIS & AUDIENCE
+       ============================================================ */
+    .market-audience {
+      padding: 100px 0 92px;
+    }
+    .market-audience .market-block {
+      margin-bottom: 96px;
+    }
+    .market-audience .section-eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-stone-accent);
+      margin-bottom: 20px;
+    }
+    .market-opportunity-slide {
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      padding: 0;
+      box-shadow: none;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: none;
+      margin-left: 0;
+    }
+    .market-opportunity-intro {
+      margin-bottom: var(--body-to-content-gap);
+    }
+    .market-opportunity-headline {
+      max-width: none;
+      text-wrap: balance;
+    }
+    .market-opportunity-layout {
+      display: grid;
+      grid-template-columns: minmax(250px, 0.86fr) minmax(420px, 1.28fr) minmax(250px, 0.86fr);
+      gap: clamp(22px, 2.6vw, 32px);
+      align-items: center;
+      min-height: 0;
+      flex: 1;
+    }
+    .market-side-panel {
+      background: var(--color-daylight-canvas);
+      border: 1px solid var(--color-ghost-gray);
+      border-radius: var(--radius-default);
+      padding: 22px 20px;
+      max-width: 340px;
+      width: 100%;
+      height: auto;
+      min-height: 356px;
+      align-self: center;
+      display: block;
+    }
+    .market-side-panel--compact {
+      width: 100%;
+      min-height: 356px;
+    }
+    .market-opportunity-layout > .market-side-panel {
+      justify-self: stretch;
+    }
+    .market-opportunity-layout > .market-side-panel:last-child {
+      justify-self: end;
+    }
+    .market-opportunity-layout > .market-side-panel:first-of-type {
+      justify-self: start;
+    }
+    .market-side-panel h3 {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--color-midnight-base);
+      margin-bottom: 0;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--color-ghost-gray);
+    }
+    .penetration-list {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      padding: 22px 0 6px;
+    }
+    .penetration-row {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .penetration-bar {
+      height: 16px;
+      border-radius: var(--radius-pill);
+      background: var(--color-ghost-gray);
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      width: 100%;
+    }
+    .penetration-fill {
+      height: 100%;
+      border-radius: inherit;
+      background: var(--color-deep-indigo);
+    }
+    .penetration-value {
+      position: absolute;
+      right: 12px;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--color-deep-indigo);
+    }
+    .penetration-row-label {
+      font-size: 12px;
+      color: var(--color-stone-accent);
+      font-weight: 500;
+      margin-top: 0;
+    }
+
+    /* Center TAM / SAM / SOM diagram */
+    .market-tam-stage {
+      position: relative;
+      min-height: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr 280px 1fr;
+      align-items: center;
+      gap: 24px;
+      overflow: visible;
+      align-self: center;
+      width: 100%;
+      max-width: 680px;
+    }
+    .tam-callouts-left {
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+      align-items: flex-end;
+      text-align: right;
+    }
+    .tam-callouts-right {
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+      align-items: flex-start;
+      text-align: left;
+    }
+    .market-tam-diagram {
+      position: relative;
+      width: 280px;
+      height: 280px;
+      margin: 0 auto;
+      flex-shrink: 0;
+    }
+    .tam-ring {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+    }
+    .tam-ring--tam {
+      width: 100%;
+      height: 100%;
+      background: var(--color-daylight-canvas);
+      border: none;
+    }
+    .tam-ring--sam {
+      width: 66%;
+      height: 66%;
+      background: #e1e4ff;
+      border: none;
+      left: 44%;
+      top: 58%;
+    }
+    .tam-ring--som {
+      width: 36%;
+      height: 36%;
+      background: #b5c0ff;
+      border: none;
+      left: 35%;
+      top: 69%;
+    }
+    .tam-ring-label {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--color-midnight-base);
+      white-space: nowrap;
+    }
+    .tam-ring-label--tam { left: 78%; top: 25%; }
+    .tam-ring-label--sam { left: 62%; top: 52%; transform: translate(-50%, -50%); }
+    .tam-ring-label--som {
+      left: 44%;
+      top: 71%;
+      transform: translate(-50%, -50%);
+    }
+    .tam-callout {
+      position: relative;
+      font-size: 11px;
+      line-height: 1.4;
+      color: var(--color-stone-accent);
+      margin: 0;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+    }
+    .tam-callout strong {
+      display: block;
+      font-size: clamp(28px, 2.2vw, 34px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 2px;
+      color: var(--color-deep-indigo);
+    }
+    .tam-callout::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      height: 1px;
+      background: var(--color-ghost-gray);
+    }
+    .tam-callout::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--color-midnight-base);
+      transform: translateY(-50%);
+    }
+    .tam-callout--sam::before {
+      content: '';
+      position: absolute;
+      right: -55px;
+      top: 50%;
+      width: 48px;
+      height: 1px;
+      background: var(--color-ghost-gray);
+    }
+    .tam-callout--sam::after {
+      content: '';
+      position: absolute;
+      right: -58px;
+      top: 50%;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--color-deep-indigo);
+      transform: translateY(-50%);
+    }
+    .tam-callout--som::before {
+      content: '';
+      position: absolute;
+      right: -71px;
+      top: 50%;
+      width: 64px;
+      height: 1px;
+      background: var(--color-ghost-gray);
+    }
+    .tam-callout--som::after {
+      content: '';
+      position: absolute;
+      right: -74px;
+      top: 50%;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--color-deep-indigo);
+      transform: translateY(-50%);
+    }
+    .tam-callout--tam::before {
+      content: '';
+      position: absolute;
+      left: -24px;
+      top: 50%;
+      width: 20px;
+      height: 1px;
+      background: var(--color-ghost-gray);
+    }
+    .tam-callout--tam::after {
+      content: '';
+      position: absolute;
+      left: -27px;
+      top: 50%;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--color-deep-indigo);
+      transform: translateY(-50%);
+    }
+
+    /* Competitor landscape graph */
+    .competitor-graph {
+      position: relative;
+      height: 220px;
+      min-height: 0;
+      margin: 24px 0 24px;
+      background: 
+        /* Horizontal grid lines */
+        linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px) 0 0 / 100% 25%,
+        /* Vertical grid lines */
+        linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px) 0 0 / 25% 100%,
+        /* Center axis lines */
+        linear-gradient(rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.08)) center / 100% 1px no-repeat,
+        linear-gradient(90deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.08)) center / 1px 100% no-repeat;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      border-radius: var(--radius-default);
+    }
+    .competitor-axis-label {
+      position: absolute;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-stone-accent);
+      white-space: nowrap;
+    }
+    .competitor-axis-label--y {
+      left: 10px;
+      top: 10px;
+      writing-mode: vertical-lr;
+      transform: rotate(180deg);
+    }
+    .competitor-axis-label--x {
+      right: 10px;
+      bottom: 10px;
+    }
+    .competitor-point {
+      position: absolute;
+      left: var(--x);
+      bottom: var(--y);
+      transform: translate(-50%, 50%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 58px;
+      min-height: 28px;
+      padding: 7px 10px;
+      border-radius: var(--radius-pill);
+      background: var(--color-daylight-canvas);
+      border: 1px solid var(--color-ghost-gray);
+      color: var(--color-stone-accent);
+      font-size: 11px;
+      font-weight: 700;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+    .competitor-point:hover {
+      transform: translate(-50%, 50%) scale(1.05);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+      z-index: 4;
+    }
+    .competitor-point--neuroband {
+      min-width: 84px;
+      min-height: 34px;
+      background: var(--color-deep-indigo);
+      color: var(--color-daylight-canvas);
+      border-color: var(--color-deep-indigo);
+      box-shadow: 0 8px 20px rgba(74, 83, 255, 0.3);
+      z-index: 3;
+    }
+    .competitor-point--neuroband:hover {
+      transform: translate(-50%, 50%) scale(1.05);
+      box-shadow: 0 12px 28px rgba(74, 83, 255, 0.45);
+    }
+    .competitor-note {
+      background: var(--color-midnight-base);
+      color: var(--color-daylight-canvas);
+      border-radius: var(--radius-actionable);
+      border-left: 4px solid var(--color-deep-indigo);
+      padding: 12px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.45;
+      margin-top: 12px;
+      text-align: center;
+    }
+
+    /* Audience — three-panel grid (light theme) */
+    .audience-block {
+      margin-top: 0;
+      padding-top: var(--spacing-40);
+    }
+    .market-audience .audience-block .body {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.5;
+      max-width: 640px;
+      margin: 0 0 var(--body-to-content-gap);
+      color: #1b1b1b;
+    }
+    .audience-panels-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--spacing-24);
+      align-items: stretch;
+    }
+    .audience-panel {
+      position: relative;
+      border-radius: var(--radius-media);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      height: 100%;
+      background: var(--color-arctic-mist);
+    }
+    .audience-panel-media {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      width: 100%;
+      background: var(--color-arctic-mist);
+      overflow: hidden;
+    }
+    .audience-panel-media.is-placeholder {
+      background: linear-gradient(160deg, var(--color-arctic-mist) 0%, #e8ebf4 100%);
+    }
+    .audience-panel-media.is-placeholder .audience-placeholder-note {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-align: center;
+      color: var(--color-stone-accent);
+      padding: 12px 16px;
+      border: 1px dashed var(--color-ghost-gray);
+      border-radius: var(--radius-smallcard);
+      background: rgba(255, 255, 255, 0.88);
+      max-width: 88%;
+    }
+    .audience-panel-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .audience-panel-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0) 45%, rgba(0, 0, 0, 0.55) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .audience-panel-badge {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      z-index: 3;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 18px 10px 14px;
+      border-radius: var(--radius-pill);
+      background: linear-gradient(
+        90deg,
+        #4a3c34 0%,
+        #8a7260 52%,
+        #c4ad96 100%
+      );
+      border: none;
+      box-shadow: none;
+      outline: none;
+      overflow: hidden;
+      isolation: isolate;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      line-height: 1;
+      color: var(--color-daylight-canvas);
+      white-space: nowrap;
+    }
+    .audience-panel-badge svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      color: var(--color-daylight-canvas);
+      stroke: currentColor;
+      stroke-width: 1.75;
+    }
+    .audience-panel-headline {
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 22px;
+      z-index: 3;
+      font-size: clamp(22px, 2.2vw, 30px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      color: var(--color-daylight-canvas);
+    }
+    .audience-panel-headline em {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-style: italic;
+      font-weight: 400;
     }
 
     /* ============================================================
@@ -1458,6 +1964,8 @@
       .hero h1,
       .impact h2,
       .section-head h2,
+      .market-audience .market-block h2,
+      .market-audience .audience-block h2,
       .choose-device > .container > h2,
       .built-section h2,
       .ways-to-wear > .container > h2,
@@ -1476,6 +1984,64 @@
       .wear-showcase-media { order: -1; margin: 0 auto; max-width: 420px; }
       .feature-tab-panel.active { grid-template-columns: 1fr; }
       .feature-tab-visual { max-width: 290px; order: -1; }
+      .market-opportunity-layout {
+        grid-template-columns: 1fr;
+        max-width: 440px;
+        margin: 0 auto;
+        min-height: 0;
+      }
+      .market-opportunity-slide {
+        width: 100%;
+        max-width: none;
+        margin-left: 0;
+      }
+      .market-opportunity-slide { min-height: 0; }
+      .market-opportunity-intro {
+        margin-bottom: 48px;
+      }
+      .market-side-panel {
+        min-height: 0;
+        max-width: none;
+        justify-self: stretch !important;
+      }
+      .market-side-panel--compact {
+        width: 100%;
+        min-height: 0;
+      }
+      .market-opportunity-layout { align-items: stretch; }
+      .market-side-panel { align-self: stretch; }
+      .market-tam-diagram {
+        width: min(280px, 100%);
+        max-width: 280px;
+        margin: 0 auto;
+      }
+      .market-tam-stage {
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        padding: 0;
+        align-self: stretch;
+        width: 100%;
+        max-width: none;
+      }
+      .tam-callouts-left,
+      .tam-callouts-right {
+        display: contents;
+      }
+      .tam-callout {
+        position: static;
+        max-width: none;
+        text-align: center;
+        align-items: center;
+      }
+      .tam-callout strong { font-size: 20px; }
+      .tam-callout::before,
+      .tam-callout::after { display: none; }
+      .penetration-list { padding: 12px 0 2px; gap: 16px; }
+      .audience-panels-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+      .market-audience .market-block { margin-bottom: 72px; }
+      .market-opportunity-layout { gap: var(--spacing-30); }
       .footer-bottom .footer-legal { position: static; }
       .stats-row { grid-template-columns: 1fr; max-width: 360px; margin: 24px auto 0; }
       .experts-track { animation-duration: 22s; }
@@ -1494,6 +2060,8 @@
       .hero h1,
       .impact h2,
       .section-head h2,
+      .market-audience .market-block h2,
+      .market-audience .audience-block h2,
       .choose-device > .container > h2,
       .built-section h2,
       .ways-to-wear > .container > h2,
@@ -1512,6 +2080,7 @@
       .impact { padding: 64px 0 72px; }
       .impact .body { font-size: 16px; margin-bottom: 40px; }
       .full-picture,
+      .market-audience,
       .choose-device,
       .backed,
       .built-section,
@@ -1714,6 +2283,140 @@
           </div>
         </div>
 
+      </div>
+    </section>
+
+    <!-- ============================================================
+         MARKET ANALYSIS & AUDIENCE
+         ============================================================ -->
+    <section class="market-audience section-light-mist" id="market-audience">
+      <div class="container">
+        <div class="market-block market-opportunity-slide reveal" id="market-opportunity">
+          <div class="market-opportunity-intro section-head">
+            <p class="section-eyebrow">Market Opportunity</p>
+            <h2 class="market-opportunity-headline">
+              <span class="display-heading-line">Brain tracking is the next</span>
+              <span class="display-heading-line">wellness layer</span>
+            </h2>
+          </div>
+
+          <div class="market-opportunity-layout">
+            <aside class="market-side-panel market-side-panel--compact">
+              <h3>Category penetration comparison</h3>
+              <div class="penetration-list">
+                <div class="penetration-row">
+                  <div class="penetration-bar">
+                    <div class="penetration-fill" style="width: 38%"></div>
+                    <span class="penetration-value">38%</span>
+                  </div>
+                  <p class="penetration-row-label">Body-performance wearables</p>
+                </div>
+                <div class="penetration-row">
+                  <div class="penetration-bar">
+                    <div class="penetration-fill" style="width: 24%"></div>
+                    <span class="penetration-value">24%</span>
+                  </div>
+                  <p class="penetration-row-label">Digital wellness apps</p>
+                </div>
+                <div class="penetration-row">
+                  <div class="penetration-bar">
+                    <div class="penetration-fill" style="width: 6%"></div>
+                    <span class="penetration-value">6%</span>
+                  </div>
+                  <p class="penetration-row-label">Consumer EEG / brain wearables</p>
+                </div>
+              </div>
+            </aside>
+
+            <div class="market-tam-stage" aria-label="TAM SAM SOM market sizing">
+              <div class="tam-callouts-left">
+                <div class="tam-callout tam-callout--sam">
+                  <strong>$1.8B</strong>
+                  <span>Consumer EEG &amp; neuro-wearables market</span>
+                </div>
+                <div class="tam-callout tam-callout--som">
+                  <strong>$360M</strong>
+                  <span>Obtainable share in 3–5 years</span>
+                </div>
+              </div>
+
+              <div class="market-tam-diagram">
+                <div class="tam-ring tam-ring--tam"></div>
+                <div class="tam-ring tam-ring--sam"></div>
+                <div class="tam-ring tam-ring--som"></div>
+                <span class="tam-ring-label tam-ring-label--tam">TAM</span>
+                <span class="tam-ring-label tam-ring-label--sam">SAM</span>
+                <span class="tam-ring-label tam-ring-label--som">SOM</span>
+              </div>
+
+              <div class="tam-callouts-right">
+                <div class="tam-callout tam-callout--tam">
+                  <strong>$12B</strong>
+                  <span>Total cognitive wellness spend</span>
+                </div>
+              </div>
+            </div>
+
+            <aside class="market-side-panel">
+              <h3>Competitor landscape</h3>
+              <div class="competitor-graph" aria-label="Competitor graph comparing brain signal depth and everyday wearability">
+                <span class="competitor-axis-label competitor-axis-label--y">Brain signal depth</span>
+                <span class="competitor-axis-label competitor-axis-label--x">Everyday wearability</span>
+                <span class="competitor-point" style="--x: 20%; --y: 18%;">Apple</span>
+                <span class="competitor-point" style="--x: 38%; --y: 32%;">Oura</span>
+                <span class="competitor-point" style="--x: 28%; --y: 72%;">Muse</span>
+                <span class="competitor-point competitor-point--neuroband" style="--x: 82%; --y: 82%;">NeuroBand</span>
+              </div>
+              <p class="competitor-note">Most wearables track the body. NeuroBand owns the brain-performance gap.</p>
+            </aside>
+          </div>
+        </div>
+
+        <div class="audience-block reveal" id="our-audience">
+          <p class="section-eyebrow">Our Audience</p>
+          <h2>Who we serve</h2>
+          <p class="body">NeuroBand is built for people who think for a living — three core audiences we design for every day.</p>
+          <div class="audience-panels-grid reveal-stagger">
+            <article class="audience-panel">
+              <div class="audience-panel-media is-placeholder">
+                <img src="Images/audience-focus.jpg" alt="Knowledge worker wearing NeuroBand during deep work" onload="this.parentElement.classList.remove('is-placeholder')" onerror="this.style.display='none'" />
+                <span class="audience-placeholder-note">Add photo: Images/audience-focus.jpg</span>
+                <span class="audience-panel-badge">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v4M8.5 8.5a5 5 0 1 0 7 0"/><circle cx="12" cy="14" r="4"/></svg>
+                  Focus &amp; Deep Work
+                </span>
+                <div class="audience-panel-overlay" aria-hidden="true"></div>
+                <h3 class="audience-panel-headline">Master deep work without <em>burning out.</em></h3>
+              </div>
+            </article>
+
+            <article class="audience-panel">
+              <div class="audience-panel-media is-placeholder">
+                <img src="Images/audience-study.jpg" alt="Student using NeuroBand while studying" onload="this.parentElement.classList.remove('is-placeholder')" onerror="this.style.display='none'" />
+                <span class="audience-placeholder-note">Add photo: Images/audience-study.jpg</span>
+                <span class="audience-panel-badge">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19h16M6 16l3-9 3 5 3-7 3 11"/></svg>
+                  Study &amp; Exams
+                </span>
+                <div class="audience-panel-overlay" aria-hidden="true"></div>
+                <h3 class="audience-panel-headline">Study smarter with <em>brain-level clarity.</em></h3>
+              </div>
+            </article>
+
+            <article class="audience-panel">
+              <div class="audience-panel-media is-placeholder">
+                <img src="Images/audience-recovery.jpg" alt="High performer recovering with NeuroBand insights" onload="this.parentElement.classList.remove('is-placeholder')" onerror="this.style.display='none'" />
+                <span class="audience-placeholder-note">Add photo: Images/audience-recovery.jpg</span>
+                <span class="audience-panel-badge">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3c3 4 5 7 5 10a5 5 0 1 1-10 0c0-3 2-6 5-10z"/></svg>
+                  Recovery &amp; Performance
+                </span>
+                <div class="audience-panel-overlay" aria-hidden="true"></div>
+                <h3 class="audience-panel-headline">Recover faster between <em>high-pressure days.</em></h3>
+              </div>
+            </article>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -2423,6 +3126,7 @@
         }, { threshold: 0.35 });
         builtIO.observe(builtInteractive);
       }
+
     });
 
     function handleWaitlist(form) {
